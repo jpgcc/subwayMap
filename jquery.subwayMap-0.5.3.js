@@ -146,6 +146,15 @@ THE SOFTWARE.
                 else 
                     dotted = false;
 
+                var lineReverseMarkers = $(ul).attr("data-reverseMarkers");
+                if ((lineReverseMarkers !== undefined))
+                    if (lineReverseMarkers.toLowerCase() == "false")
+                        lineReverseMarkers = false;
+                    else
+                        lineReverseMarkers = true;
+                else
+                    lineReverseMarkers = reverseMarkers;
+
                 var lineTextClass = $(ul).attr("data-textClass");
                 if (lineTextClass === undefined) lineTextClass = "";
 
@@ -208,9 +217,9 @@ THE SOFTWARE.
                 });
 
                 if (nodes.length > 0) {
-                    self._drawLine(el, scale, rows, columns, color, (lineTextClass != "" ? lineTextClass : textClass), lineWidth, nodes, reverseMarkers, dotted);
+                    self._drawLine(el, scale, rows, columns, color, (lineTextClass != "" ? lineTextClass : textClass), lineWidth, nodes, lineReverseMarkers, dotted);
                     if (outline === true) 
-                        self._drawLine(el, scale, rows, columns, '#FFFFFF', false, lineWidth - 2, nodes, reverseMarkers, dotted);
+                        self._drawLine(el, scale, rows, columns, '#FFFFFF', false, lineWidth - 2, nodes, lineReverseMarkers, dotted);
                 }
                     
                 $(ul).remove();
